@@ -1,0 +1,248 @@
+/* .smart-suggestions {
+    margin-bottom: 2rem;
+}
+
+.smart-suggestions__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.smart-suggestions__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.smart-suggestions__title h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.smart-suggestions__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.smart-suggestion {
+    border-left: 3px solid var(--accent-primary);
+    transition: var(--transition);
+}
+
+.smart-suggestion:hover {
+    transform: translateX(2px);
+}
+
+.smart-suggestion__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.smart-suggestion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.smart-suggestion__icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smart-suggestion__dismiss {
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.smart-suggestion:hover .smart-suggestion__dismiss {
+    opacity: 1;
+}
+
+.smart-suggestion__body {
+    flex: 1;
+}
+
+.smart-suggestion__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+}
+
+.smart-suggestion__description {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.smart-suggestion__actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .smart-suggestions__list {
+        gap: 0.5rem;
+    }
+
+    .smart-suggestion__content {
+        gap: 0.75rem;
+    }
+} */
+
+.smart-suggestions {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.smart-suggestions__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.smart-suggestions__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.smart-suggestions__title h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.smart-suggestions__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.smart-suggestion {
+    border-left: 3px solid var(--accent-primary);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.smart-suggestion:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.smart-suggestion__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+}
+
+.smart-suggestion__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.smart-suggestion__icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.smart-suggestion__dismiss {
+    opacity: 0;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.smart-suggestion:hover .smart-suggestion__dismiss {
+    opacity: 1;
+}
+
+.smart-suggestion__body {
+    flex: 1;
+}
+
+.smart-suggestion__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
+}
+
+.smart-suggestion__description {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.smart-suggestion__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+/* Desktop Layout */
+@media (min-width: 1024px) {
+    .smart-suggestions__list {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* Tablet Layout */
+@media (max-width: 1023px) and (min-width: 768px) {
+    .smart-suggestions__list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+}
+
+/* Mobile Layout */
+@media (max-width: 767px) {
+    .smart-suggestions {
+        margin-bottom: 1rem;
+    }
+
+    .smart-suggestions__list {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .smart-suggestion__content {
+        gap: 0.75rem;
+    }
+
+    .smart-suggestion__dismiss {
+        opacity: 1;
+        /* Always visible on mobile */
+    }
+
+    .smart-suggestion__actions {
+        justify-content: stretch;
+    }
+
+    .smart-suggestion__actions button {
+        flex: 1;
+    }
+}

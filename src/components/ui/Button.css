@@ -1,0 +1,119 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn:focus {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+/* Variants */
+.btn--primary {
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.btn--secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn--secondary:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--accent-primary);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.btn--ghost:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.btn--danger {
+    background: var(--error);
+    color: white;
+}
+
+.btn--danger:hover {
+    background: #dc2626;
+}
+
+/* Sizes */
+.btn--small {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+}
+
+.btn--medium {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+}
+
+.btn--large {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* States */
+.btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn__spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.btn__icon {
+    display: flex;
+    align-items: center;
+}
+
+.btn__text {
+    display: flex;
+    align-items: center;
+}
