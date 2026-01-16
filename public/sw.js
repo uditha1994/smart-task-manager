@@ -1,4 +1,4 @@
-const CACHE_NAME = 'smart-task-manager-v1';
+const CACHE_NAME = 'peakflow-v1';
 const urlsToCache = [
     '/',
     '/static/js/bundle.js',

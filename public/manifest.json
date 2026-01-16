@@ -1,6 +1,6 @@
 {
-  "name": "Smart Task Manager",
-  "short_name": "TaskManager",
+  "name": "PeakFlow",
+  "short_name": "PeakFlow",
   "description": "A smart task management application with analytics and insights",
   "start_url": "/",
   "display": "standalone",
@@ -21,7 +21,10 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["productivity", "utilities"],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
   "screenshots": [
     {
       "src": "/screenshot-wide.png",

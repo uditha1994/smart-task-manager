@@ -22,9 +22,9 @@ const Header = ({ onSettingsClick, onAnalyticsClick, activeView }) => {
                         whileHover={{ rotate: 360 }}
                         transition={{ duration: 0.5 }}
                     >
-                        📋
+                        📝
                     </motion.div>
-                    <h1 className="header__title">Smart Task Manager</h1>
+                    <h1 className="header__title">PeakFlow</h1>
                 </div>
 
                 <nav className="header__nav">
