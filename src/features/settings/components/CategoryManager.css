@@ -1,0 +1,590 @@
+/* src/features/settings/components/CategoryManager.css */
+
+/* ==================== Main Container ==================== */
+.category-manager {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================== Header ==================== */
+.category-manager__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.category-manager__header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.category-manager__header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 8px;
+}
+
+.category-manager__header-text h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.category-manager__header-text p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.category-manager__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==================== Category List ==================== */
+.category-manager__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 2px;
+}
+
+/* Scrollbar Styling */
+.category-manager__list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.category-manager__list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.category-manager__list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+
+.category-manager__list::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* ==================== Category Item ==================== */
+.category-manager__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.category-manager__item:hover {
+    background-color: var(--bg-tertiary);
+    border-color: var(--primary-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.category-manager__item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+.category-manager__item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.category-manager__item-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.category-manager__item-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.category-manager__item-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-manager__item-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+/* Action Buttons */
+.category-manager__item-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.category-manager__item:hover .category-manager__item-actions {
+    opacity: 1;
+    visibility: visible;
+}
+
+.category-manager__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    color: var(--text-tertiary);
+}
+
+.category-manager__action-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+.category-manager__action-btn--edit:hover {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.category-manager__action-btn--delete:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* ==================== Category Form Modal ==================== */
+.category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.category-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.category-form__field>label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.category-form__field .input {
+    height: 40px;
+    font-size: 13px;
+}
+
+.category-form__error {
+    font-size: 11px;
+    color: #ef4444;
+    margin-top: -4px;
+}
+
+/* Color Selection Grid */
+.category-form__colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.category-form__color-btn {
+    width: 30px;
+    height: 30px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    position: relative;
+}
+
+.category-form__color-btn:hover {
+    transform: scale(1.1);
+}
+
+.category-form__color-btn.active {
+    border-color: var(--text-primary);
+    transform: scale(1.1);
+}
+
+.category-form__color-btn.active::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.category-form__color-btn svg {
+    color: white;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* Icon Selection Grid */
+.category-form__icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.category-form__icon-btn {
+    width: 38px;
+    height: 38px;
+    border: 1.5px solid var(--border-light);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.category-form__icon-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.category-form__icon-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: var(--primary-light);
+}
+
+.category-form__icon-btn.active {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Preview Section */
+.category-form__preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background-color: var(--bg-tertiary);
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+}
+
+.category-form__preview>label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.category-form__preview-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1.5px solid;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.category-form__preview-tag svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* Form Action Buttons */
+.category-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 16px;
+    margin-top: 4px;
+    border-top: 1px solid var(--border-light);
+}
+
+.category-form__actions button {
+    min-width: 110px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ==================== Confirmation Modal ==================== */
+.category-delete-confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px;
+}
+
+.category-delete-confirm__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(239, 68, 68, 0.1);
+    margin-bottom: 16px;
+}
+
+.category-delete-confirm__icon svg {
+    width: 30px;
+    height: 30px;
+    color: #ef4444;
+}
+
+.category-delete-confirm__icon--warning {
+    background-color: rgba(245, 158, 11, 0.1);
+}
+
+.category-delete-confirm__icon--warning svg {
+    color: #f59e0b;
+}
+
+.category-delete-confirm h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.category-delete-confirm p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+.category-delete-confirm__actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.category-delete-confirm__actions button {
+    min-width: 100px;
+    height: 38px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ==================== Empty State ==================== */
+.category-manager__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--bg-tertiary);
+    border-radius: 10px;
+    border: 2px dashed var(--border-color);
+}
+
+.category-manager__empty-icon {
+    width: 48px;
+    height: 48px;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+}
+
+.category-manager__empty p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* ==================== Responsive Styles ==================== */
+@media (max-width: 576px) {
+    .category-manager__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .category-manager__header-actions {
+        width: 100%;
+    }
+
+    .category-manager__header-actions button {
+        flex: 1;
+    }
+
+    .category-manager__list {
+        max-height: 220px;
+    }
+
+    .category-manager__item {
+        padding: 8px 10px;
+    }
+
+    .category-manager__item-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .category-manager__item-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .category-manager__item-name {
+        font-size: 12px;
+    }
+
+    .category-manager__item-actions {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .category-manager__action-btn {
+        width: 28px;
+        height: 28px;
+    }
+
+    .category-form__actions {
+        flex-direction: column-reverse;
+    }
+
+    .category-form__actions button {
+        width: 100%;
+    }
+
+    .category-delete-confirm__actions {
+        flex-direction: column;
+    }
+
+    .category-delete-confirm__actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .category-manager__header-text p {
+        display: none;
+    }
+
+    .category-manager__item-badge {
+        display: none;
+    }
+
+    .category-form__preview {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* ==================== Dark Mode ==================== */
+[data-theme="dark"] .category-manager__item {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .category-manager__item:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .category-form__icon-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .category-form__preview {
+    background-color: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .category-form__color-btn.active {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .category-manager__action-btn--delete:hover {
+    background-color: rgba(239, 68, 68, 0.15);
+}
+
+/* ==================== Focus States ==================== */
+.category-form__color-btn:focus-visible,
+.category-form__icon-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.category-manager__action-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 1px;
+}
+
+/* ==================== Subtle Animation ==================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.category-manager__item {
+    animation: fadeIn 0.2s ease forwards;
+}

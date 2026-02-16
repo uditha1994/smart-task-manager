@@ -1,3 +1,5 @@
+// src/features/settings/components/SettingsPanel.jsx
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
@@ -10,15 +12,18 @@ import {
     Sun,
     Database,
     FileText,
-    AlertCircle
+    AlertCircle,
+    Tag
 } from 'lucide-react';
 import Button from '../../../components/ui/Button';
 import Card from '../../../components/ui/Card';
 import Modal from '../../../components/ui/Modal';
 import Input from '../../../components/ui/Input';
+import CategoryManager from './CategoryManager';
 import { useTheme } from '../../../hooks/useTheme';
 import { exportService } from '../../../services/exportService';
 import { taskService } from '../../../services/taskService';
+import { categoryService } from '../../../services/categoryService';
 import './SettingsPanel.css';
 
 const SettingsPanel = ({
@@ -26,16 +31,18 @@ const SettingsPanel = ({
     onClose,
     tasks,
     onTasksImport,
-    onShowToast
+    onShowToast,
+    onCategoriesChange
 }) => {
     const { theme, toggleTheme } = useTheme();
+    const [categories, setCategories] = useState([]);
     const [settings, setSettings] = useState({
         notifications: true,
         autoSave: true,
         defaultCategory: 'personal',
         defaultPriority: 'medium',
         workingHours: { start: '09:00', end: '17:00' },
-        reminderTime: 30 // minutes before due date
+        reminderTime: 30
     });
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [importFile, setImportFile] = useState(null);
@@ -46,6 +53,8 @@ const SettingsPanel = ({
         if (savedSettings) {
             setSettings({ ...settings, ...JSON.parse(savedSettings) });
         }
+        // Load categories
+        setCategories(categoryService.getCategories());
     }, []);
 
     const saveSettings = (newSettings) => {
@@ -65,6 +74,17 @@ const SettingsPanel = ({
             workingHours: { ...settings.workingHours, [type]: value }
         };
         saveSettings(newSettings);
+    };
+
+    const handleCategoriesChange = (newCategories) => {
+        setCategories(newCategories);
+        onCategoriesChange?.(newCategories);
+
+        // Update default category if it was deleted
+        const defaultCategoryExists = newCategories.some(cat => cat.id === settings.defaultCategory);
+        if (!defaultCategoryExists) {
+            handleSettingChange('defaultCategory', 'personal');
+        }
     };
 
     const handleExportJSON = () => {
@@ -111,7 +131,7 @@ const SettingsPanel = ({
                 total += localStorage[key].length;
             }
         }
-        return (total / 1024).toFixed(2); // KB
+        return (total / 1024).toFixed(2);
     };
 
     return (
@@ -183,6 +203,14 @@ const SettingsPanel = ({
                         </div>
                     </Card>
 
+                    {/* Category Management - NEW SECTION */}
+                    <Card className="settings-section" padding="large">
+                        <CategoryManager
+                            onShowToast={onShowToast}
+                            onCategoriesChange={handleCategoriesChange}
+                        />
+                    </Card>
+
                     {/* Default Values */}
                     <Card className="settings-section" padding="large">
                         <h3 className="settings-section__title">
@@ -203,11 +231,11 @@ const SettingsPanel = ({
                                     value={settings.defaultCategory}
                                     onChange={(e) => handleSettingChange('defaultCategory', e.target.value)}
                                 >
-                                    <option value="personal">Personal</option>
-                                    <option value="work">Work</option>
-                                    <option value="urgent">Urgent</option>
-                                    <option value="health">Health</option>
-                                    <option value="learning">Learning</option>
+                                    {categories.map(category => (
+                                        <option key={category.id} value={category.id}>
+                                            {category.name}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
 
@@ -290,6 +318,10 @@ const SettingsPanel = ({
                                     <span className="settings-stat__value">{tasks.length}</span>
                                 </div>
                                 <div className="settings-stat">
+                                    <span className="settings-stat__label">Categories:</span>
+                                    <span className="settings-stat__value">{categories.length}</span>
+                                </div>
+                                <div className="settings-stat">
                                     <span className="settings-stat__label">Storage Used:</span>
                                     <span className="settings-stat__value">{getStorageUsage()} KB</span>
                                 </div>
@@ -365,7 +397,7 @@ const SettingsPanel = ({
                     <h3>Are you absolutely sure?</h3>
                     <p>
                         This action cannot be undone. This will permanently delete all your tasks,
-                        settings, and analytics data.
+                        categories, settings, and analytics data.
                     </p>
                     <div className="settings-delete-confirm__actions">
                         <Button

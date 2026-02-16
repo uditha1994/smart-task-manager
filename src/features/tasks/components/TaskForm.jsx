@@ -5,6 +5,7 @@ import Button from '../../../components/ui/Button';
 import Input from '../../../components/ui/Input';
 import Card from '../../../components/ui/Card';
 import { TaskCategory, TaskPriority } from '../../../types';
+import { useCategories } from '../../../hooks/useCategories';
 import './TaskForm.css';
 
 const TaskForm = ({
@@ -13,10 +14,11 @@ const TaskForm = ({
     onClose,
     onSubmit
 }) => {
+    const { categories } = useCategories();
     const [formData, setFormData] = useState({
         title: '',
         description: '',
-        category: TaskCategory.PERSONAL,
+        category: categories[0]?.id || TaskCategory.PERSONAL,
         priority: TaskPriority.MEDIUM,
         dueDate: '',
         estimatedTime: 0,
@@ -30,7 +32,7 @@ const TaskForm = ({
             setFormData({
                 title: task.title || '',
                 description: task.description || '',
-                category: task.category || TaskCategory.PERSONAL,
+                category: task.category || categories[0]?.id || TaskCategory.PERSONAL,
                 priority: task.priority || TaskPriority.MEDIUM,
                 dueDate: task.dueDate ? task.dueDate.split('T')[0] : '',
                 estimatedTime: task.estimatedTime || 0,
@@ -40,7 +42,7 @@ const TaskForm = ({
             setFormData({
                 title: '',
                 description: '',
-                category: TaskCategory.PERSONAL,
+                category: categories[0]?.id || TaskCategory.PERSONAL,
                 priority: TaskPriority.MEDIUM,
                 dueDate: '',
                 estimatedTime: 0,
@@ -147,11 +149,11 @@ const TaskForm = ({
                                 <select
                                     className="task-form__select"
                                     value={formData.category}
-                                    onChange={(e) => handleChange('category', e.target.value)}
+                                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                                 >
-                                    {Object.values(TaskCategory).map(category => (
-                                        <option key={category} value={category}>
-                                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                                    {categories.map(category => (
+                                        <option key={category.id} value={category.id}>
+                                            {category.name}
                                         </option>
                                     ))}
                                 </select>
